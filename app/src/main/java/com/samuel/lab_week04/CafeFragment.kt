@@ -25,7 +25,15 @@ class CafeFragment : Fragment() {
         val viewPager = view.findViewById<ViewPager2>(R.id.view_pager)
         val tabLayout = view.findViewById<TabLayout>(R.id.tab_layout)
 
-        val adapter = CafeAdapter(childFragmentManager, lifecycle)
+        // Create the list of content for each tab
+        val tabContents = listOf(
+            getString(R.string.starbucks_desc),
+            getString(R.string.janjijiwa_desc),
+            getString(R.string.kopikenangan_desc)
+        )
+
+        // Pass the list of content to the adapter
+        val adapter = CafeAdapter(childFragmentManager, lifecycle, tabContents)
         viewPager.adapter = adapter
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
